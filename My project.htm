@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="description" content="ie=edge">
+    
+<title>Insulin Pump</title>
+
+
+<body>
+   <h1 id="text">INSULINE  RESERVOIR</h1>
+      <input id="minutes" type="text" style="width: 50px; border:none; background-color:#FFFF00; font-size: 50px; font-weight:bold;">
+      <input id="seconds" type="text" style="width: 50px; border: none; background-color:#FFFF00; font-size: 50px; font-weight: bold;">
+      <div id="logbox"></div>
+
+</body>
+
+
+ <style> 
+   body {
+   background:#87CEFA;
+        }
+  
+
+  #minutes{
+	  margin-left:627px;
+	  margin-top:30px;
+	  text-align:center;
+	  color:#000;
+	  }
+
+	#seconds{
+		text-align:center;
+		color:#000;
+		}
+
+	#text{
+		text-align:center;
+		color:#000000;
+		background-color:#DDA0DD;
+		margin-top:20px;
+             }
+
+	#logbox{
+		color:#581845;
+		text-align:center;
+		margin-top:30px;
+				
+ </style>
+
+
+
+     <script type="text/javascript">
+
+                   var mins = 0;
+                   var secs = 5;
+
+                       var minutes, seconds;
+                       var sugerlevel = Math.floor(Math.random()*5 + 1);
+
+
+        function countdown() {
+        setTimeout('pk()',1000);
+                             }
+
+
+function pk() {
+    
+    if (seconds < 60) {
+        seconds.value = secs;
+		 } else {
+        minutes.value = getminutes();
+        seconds.value = getseconds();
+    }
+    secs--;
+
+    console.log(minutes + ', ' + seconds);
+    if (seconds.value <= 0 && minutes.value <= 0) {
+		if (sugerlevel <=1){
+			alert('Suger level in blood is low, you have to take sweet');
+			}
+			if (sugerlevel ==2){
+			alert('Suger level in blood is normal');
+			}
+			if (sugerlevel >=3){
+			alert('Suger level in blood is too high, Pump started');
+			alert('Insulin Required!');
+			}
+		var Date_1 = new Date();
+		var month = Date_1.getMonth();
+		var day = Date_1.getDate();
+		var year = Date_1.getFullYear();
+		var fullDate = day + "-" + month + "-" + year;
+			
+			
+			function log(str){
+				
+		var html = "<p>" +str+ "</p>";
+		var logEl = document.getElementById("logbox");
+		logEl.innerHTML = html;		
+		}
+		log("Suger Level of the body is:   " + sugerlevel + "<br> Date: " + fullDate);
+
+		}
+     else {
+		setTimeout('pk()',1000);
+             }
+	
+			
+}
+
+function getminutes() {
+  mins = Math.floor(secs / 60);
+  return mins;
+}
+
+function getseconds() {
+  return secs-Math.round(mins *60);
+}
+
+
+document.onreadystatechange = function() {if(document.readyState == "complete") {
+    minutes = document.getElementById("minutes");
+    seconds = document.getElementById("seconds");
+
+    countdown();
+  }
+ 	}
+
+	
+</script>
+</head>
+</html>
